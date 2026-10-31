@@ -87,7 +87,25 @@ The **eGauge** integration provides the following entities:
 - **Voltage**: Each voltage register on the eGauge will appear as a Home Assistant sensor reporting the electrical voltage in volts (V).
 **Current**: Each current register on the eGauge will appear as a Home Assistant sensor reporting the electrical current in amperes (A).
 
-### Data updates
+## Options
+
+To change which registers report an inverted sign, select the **Configure**
+button on the integration's card.
+
+{% configuration_basic %}
+Registers to invert:
+    description: "Registers whose sign should be flipped. Only registers
+    reporting power are listed. Change the selection when a current transformer
+    has been installed backwards, or when a register reports generation as a
+    negative value."
+{% endconfiguration_basic %}
+
+Inverting a register negates its power reading. Energy, voltage and current
+readings are not affected: an inverted energy total would be rejected by Home
+Assistant's long-term statistics, which expect a cumulative counter to
+increase.
+
+## Data updates
 
 The **eGauge** integration {% term polling polls %} the device every 30 seconds.
 
